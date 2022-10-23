@@ -1,0 +1,32 @@
+package com.ds.concepts;
+
+/* First go through the concept then after practice!!
+ * 
+ * This concept is about how to create LinkedList and 
+ * 
+ *  its methods such as: addFirst, addLast, deleteFirst, deleteLast
+ *  printLinkedList, findSize.
+ *  
+ *  @Deenanath
+ * */
+public class LinkedListStarter2 {
+	
+	Node head;
+	int size;
+	
+	class Node {
+		String data;
+		Node next;
+		
+		Node(String data){
+			this.data = data;
+			this.next = null;
+		}
+	}
+  
+  public static void main(String[] args) {
+    LinkedListStarter2 ll = new LinkedListStarter2();
+  
+    }
+	}
+  
