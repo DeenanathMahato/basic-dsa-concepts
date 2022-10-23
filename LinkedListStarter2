@@ -23,10 +23,70 @@ public class LinkedListStarter2 {
 			this.next = null;
 		}
 	}
+	
+		public void insert(String data, int position) {
+		Node toAddNode = new Node(data);
+
+		if (position == 0) {
+			toAddNode.next = head;
+			head = toAddNode;
+			return;
+		}
+
+		Node beforeNode = head;
+		for (int pos = 0; pos < position - 1; pos++) {
+			beforeNode = beforeNode.next;
+		}
+
+		toAddNode.next = beforeNode.next;
+		beforeNode.next = toAddNode;
+	}
+
+	public void delete(int position) {
+		if(position == 0) {
+			head = head.next;
+			return;
+		}
+		
+		Node prev = head;
+		for(int i = 0; i < position - 1; i++) {
+			prev = prev.next;
+		}
+		
+		prev.next = prev.next.next;
+	}
+
+	public void printList() {
+		if (head == null) {
+			System.out.println("List is empty!");
+			return;
+		}
+
+		Node currNode = head;
+		while (currNode != null) {
+			System.out.print(currNode.data + " -> ");
+			currNode = currNode.next;
+		}
+
+		System.out.println("null");
+	}
+
   
   public static void main(String[] args) {
-    LinkedListStarter2 ll = new LinkedListStarter2();
-  
+    		LinkedListStarter2 ll = new LinkedListStarter2();
+		ll.insert("is", 0);
+		ll.insert("this", 0);
+
+		ll.printList();
+
+		ll.insert("a", 1);
+		ll.printList();
+		
+		ll.delete(0);
+		ll.printList();
+		
+		ll.delete(1);
+		ll.printList();
     }
 	}
   
