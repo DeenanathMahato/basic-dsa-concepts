@@ -1,0 +1,133 @@
+package com.ds.concepts;
+
+/* First go through the concept then after practice!!
+ * 
+ * This concept is about how to create LinkedList and 
+ * 
+ *  its methods such as: addFirst, addLast, deleteFirst, deleteLast
+ *  printLinkedList, findSize.
+ *  
+ *  @Deenanath
+ * */
+public class LinkedListStarter1 {
+	
+	Node head;
+	int size;
+	
+	class Node {
+		String data;
+		Node next;
+		
+		Node(String data){
+			this.data = data;
+			this.next = null;
+		}
+	}
+	
+	public void addFirst(String data) {
+		Node newNode = new Node(data);
+		
+		size++;
+		if(head == null) {
+			head = newNode;
+			return;
+		}
+		
+		newNode.next = head;
+		head = newNode;
+	}
+	
+	public void addLast(String data) {
+		Node newNode = new Node(data);
+		
+		size++;
+		if(head == null) {
+			head = newNode;
+			return;
+		}
+
+		//find last node: traverse
+		Node currNode = head;
+		while(currNode.next != null) {
+			currNode = currNode.next;
+		}
+		
+		currNode.next = newNode;
+	}
+	
+	public void deleteFirst() {
+		if(head == null) {
+			return;
+		}
+		
+		size--;
+		head = head.next;
+	}
+	
+	public void deleteLast() {
+		if(head == null) {
+			return;
+		}
+		
+		size--;
+		if(head.next == null) {
+			head = null;
+			return;
+		}
+		
+		//find second last node to remove last node
+		Node secondLastNode = head;
+		Node lastNode = head.next;
+		while(lastNode.next != null) {
+			lastNode= lastNode.next;
+			secondLastNode = secondLastNode.next;
+		}
+		
+		secondLastNode.next = null;
+	}
+	
+	public int findSize() {
+		return size;
+	}
+	
+	public void printLinkedList() {
+		if(head == null) {
+			System.out.println("List is empty!");
+			return;
+		}
+		
+		Node currNode = head;
+		while(currNode != null) {
+			System.out.print(currNode.data + " -> ");
+			currNode = currNode.next;
+		}
+		
+		System.out.println("null");
+	}
+	
+	public static void main(String[] args) {
+		LinkedListStarter1 list = new LinkedListStarter1();
+		
+		list.addFirst("a");
+		list.addFirst("is");
+		list.printLinkedList();
+		System.out.println("Size: " + list.findSize());
+		
+		list.addLast("list");
+		list.printLinkedList();
+		System.out.println("Size: " + list.findSize());
+		
+		list.addFirst("this");
+		list.printLinkedList();
+		System.out.println("Size: " + list.findSize());
+		
+		list.deleteFirst();
+		list.printLinkedList();
+		System.out.println("Size: " + list.findSize());
+		
+		list.deleteLast();
+		list.printLinkedList();
+		System.out.println("Size: " + list.findSize());
+	}
+	
+}
