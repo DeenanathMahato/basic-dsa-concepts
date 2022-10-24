@@ -1,0 +1,97 @@
+package com.ds.concepts;
+
+public class ReverseLinkedList {
+
+	Node head;
+	
+	class Node {
+		String data;
+		Node next;
+		
+		Node(String data){
+			this.data = data;
+			this.next = null;
+		}
+	}
+	
+	public void insert(String data, int position) {
+		
+		Node newNode = new Node(data);
+		
+		if(position == 0) {
+			newNode.next = head;
+			head = newNode;
+			return;
+		}
+		
+		Node prevNode = head;
+		for(int i = 0; i < position - 1; i++) {
+			prevNode = prevNode.next;
+		}
+		
+		newNode.next = prevNode.next;
+		prevNode.next = newNode;
+	}
+	
+	public void printList() {
+		if(head == null) {
+			System.out.println("List is empty!");
+			return;
+		}
+		
+		Node currNode = head;
+		while(currNode != null) {
+			System.out.print(currNode.data + " -> ");
+			currNode = currNode.next;
+		}
+		
+		System.out.println("null");
+	}
+	
+	//without recursion
+	public Node reverse() {
+		
+		Node currentNode = head;
+		Node previousNode = null;
+		while(currentNode != null) {
+			Node tempNode = currentNode.next;
+			currentNode.next = previousNode;
+			previousNode = currentNode;
+			
+			currentNode = tempNode;
+		}
+		
+		return previousNode;
+	}
+	
+	//with recursion v.v.i.
+	public Node reverse(Node head) {
+		
+		if(head == null || head.next == null) {
+			return head;
+		}
+		
+		Node newHead = reverse(head.next);
+		Node headNext = head.next;
+		headNext.next = head;
+		head.next = null;
+		return newHead;
+	}
+	
+	public static void main(String[] args) {
+		ReverseLinkedList ll = new ReverseLinkedList();
+		
+		ll.insert("this", 0);
+		ll.insert("is", 1);
+		ll.insert("a", 2);
+		ll.insert("list", 3);
+		
+		ll.printList();
+		
+		ll.head = ll.reverse();
+		ll.printList();
+		
+		ll.head = ll.reverse(ll.head);
+		ll.printList();
+	}
+}
