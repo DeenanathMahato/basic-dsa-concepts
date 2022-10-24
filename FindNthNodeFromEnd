@@ -1,0 +1,56 @@
+package com.ds.practices;
+
+import com.ds.concepts.LinkedListStarter2;
+import com.ds.concepts.LinkedListStarter2.Node;
+
+public class FindNthNodeFromEnd {
+	
+	   //Function to find the data of nth node from the end of a linked list.
+    static int getNthFromLast(Node head, int n)
+    {
+    	// Your code here	
+    	int noOfNodes = 0;
+    	
+    	if(head == null) {
+    	    return -1;
+    	}
+    	
+    	//count number of nodes
+    	Node temp = head;
+    	while(temp != null) {
+    	    temp = temp.next;
+    	    noOfNodes++;
+    	}
+    	
+    	//find n'th node from last
+    	if((noOfNodes - n) < 0) {
+    	    return -1;
+    	}
+    	
+    	temp = head;
+    	for(int position = 0; position < noOfNodes - n; position++) {
+    	    temp = temp.next;
+    	}
+    	
+    	if (temp != null)
+    	    return Integer.parseInt(temp.data);
+    	else
+    	    return -1;
+    }
+
+	public static void main(String[] args) {
+		LinkedListStarter2 ll = new LinkedListStarter2();
+		ll.insert("1", 0);
+		ll.insert("2", 1);
+		ll.insert("3", 2);
+		ll.insert("4", 3);
+		ll.insert("5", 4);
+		ll.insert("6", 5);
+		ll.insert("7", 6);
+		ll.insert("8", 7);
+		ll.insert("9", 8);
+		
+		int resultNode = getNthFromLast(ll.head, 2);
+		System.out.println(resultNode);
+	}
+}
