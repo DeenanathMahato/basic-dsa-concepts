@@ -1,0 +1,24 @@
+class FindMiddleInLinkedList
+{
+    int getMiddle(Node head)
+    {
+         // Your code here.
+         if(head != null && head.next == null) {
+             return head.data;
+         }
+         
+         Node tempNode = head;
+         int size = 0;
+         while(tempNode != null) {
+             tempNode = tempNode.next;
+             size++;
+         }
+         
+         tempNode = head;
+         for(int i = 0; i < size/2; i++) {
+             tempNode = tempNode.next;
+         }
+         
+          return tempNode.data;
+    }
+}
