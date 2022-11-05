@@ -118,6 +118,16 @@ public class BinaryTreeUsingPreorder4 {
 		return leftSum + rightSum + root.data;
 	}
 	
+	public static int heightOfTree(Node root) {
+		if(root == null)
+			return 0;
+		
+		int leftHeight = heightOfTree(root.left);
+		int rightHeight = heightOfTree(root.right);
+		
+		return Math.max(leftHeight, rightHeight) + 1;
+	}
+	
 	public static void main(String[] args) {
 		Node root = createBinaryTree(new int []{1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1});
 		
@@ -135,6 +145,9 @@ public class BinaryTreeUsingPreorder4 {
 		
 		int sumOfNodes = sumOfNodes(root);
 		System.out.println("Sum of Nodes : " + sumOfNodes);
+		
+		int heightOfTree = heightOfTree(root);
+		System.out.println("Height Of Tree: " + heightOfTree);
 	}
 
 }
